@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>臺灣天氣 MCP 伺服器 (Claude 專用)</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            padding-top: 2rem;
+            background-color: #f8f9fa;
+        }
+        .header {
+            background-color: #343a40;
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #0d6efd;
+        }
+        .card {
+            margin-bottom: 1.5rem;
+            border: none;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .footer {
+            margin-top: 3rem;
+            padding: 1.5rem 0;
+            background-color: #343a40;
+            color: white;
+        }
+        .badge {
+            margin-right: 0.5rem;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header text-center">
+            <h1>臺灣天氣 MCP 伺服器</h1>
+            <p class="lead">專為 Claude AI 設計的天氣資訊服務</p>
+            <div>
+                <span class="badge bg-warning">MIT License</span>
+                <span class="badge bg-primary">MCP Protocol</span>
+                <span class="badge bg-info">Claude Desktop</span>
+                <span class="badge bg-success">中央氣象署 API</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <h2>專案介紹</h2>
+                <p>
+                    這是一個<strong>專為 Claude AI 設計</strong>的 Model Context Protocol (MCP) 伺服器，提供來自中央氣象署 (CWA) 的臺灣天氣預報、警特報和降雨觀測資料。
+                    透過此伺服器，<strong>Claude Desktop</strong> 可以直接存取即時天氣資訊，為用戶提供更智能的天氣相關服務。
+                </p>
+                
+                <h3>功能特色</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card p-3">
+                            <div class="feature-icon">🌦️</div>
+                            <h4>天氣預報</h4>
+                            <p>依地點查詢臺灣天氣預報，支援全臺各縣市</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-3">
+                            <div class="feature-icon">⚠️</div>
+                            <h4>警特報</h4>
+                            <p>獲取全臺灣活躍的天氣警特報資訊</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-3">
+                            <div class="feature-icon">🌧️</div>
+                            <h4>降雨資料</h4>
+                            <p>存取各氣象站的降雨觀測資料</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-3">
+                            <div class="feature-icon">🌡️</div>
+                            <h4>即時觀測</h4>
+                            <p>依地點查看即時天氣觀測資料</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h3>快速連結</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="https://github.com/chinlung/weather-api-project" target="_blank">GitHub 儲存庫</a></li>
+                        <li class="list-group-item"><a href="https://github.com/chinlung/weather-api-project/blob/master/README.md" target="_blank">詳細文件</a></li>
+                        <li class="list-group-item"><a href="https://opendata.cwa.gov.tw/dist/opendata-swagger.html" target="_blank">中央氣象署 API</a></li>
+                        <li class="list-group-item"><a href="https://modelcontextprotocol.io/" target="_blank">Model Context Protocol</a></li>
+                    </ul>
+                </div>
+                
+                <div class="card p-3 mt-4">
+                    <h3>最近更新</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>2025-03-09</strong>: 修復降雨觀測資料功能</li>
+                        <li class="list-group-item"><strong>2025-03-05</strong>: 改進警特報資料處理</li>
+                        <li class="list-group-item"><strong>2025-03-01</strong>: 優化地點名稱匹配邏輯</li>
+                        <li class="list-group-item"><a href="https://github.com/chinlung/weather-api-project/blob/master/README.md#最近更新" target="_blank">查看更多...</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h3>使用範例</h3>
+                <p>設定完成後，您可以向 Claude Desktop 提出以下類型的問題：</p>
+                <div class="card p-3">
+                    <ul>
+                        <li>"臺北市今天的天氣預報是什麼?"</li>
+                        <li>"目前臺灣有哪些天氣警報?"</li>
+                        <li>"高雄市的降雨量是多少?"</li>
+                        <li>"臺中市的目前氣象觀測數據"</li>
+                        <li>"臺南市有什麼天氣警特報？它的有效時間是什麼？"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h3>設定 Claude Desktop</h3>
+                <p>您可以在 Claude Desktop 的設定檔 (<code>config.json</code>) 中加入以下內容，以使用此 MCP 伺服器：</p>
+                <pre><code>{
+  "mcpServers": {
+    "taiwan-weather": {
+      "command": "/path/to/your/uv",
+      "args": [
+        "--directory",
+        "/path/to/your/weather/project",
+        "run",
+        "server.py"
+      ]
+    }
+  }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer text-center">
+        <div class="container">
+            <p>© 2025. 以 MIT 授權條款發布。</p>
+            <p>
+                <a href="https://github.com/chinlung/weather-api-project" class="text-white">GitHub</a> |
+                <a href="https://github.com/chinlung/weather-api-project/blob/master/LICENSE" class="text-white">授權條款</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

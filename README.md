@@ -1,55 +1,60 @@
-# Taiwan Weather MCP Server
+# 臺灣天氣 MCP 伺服器 (Claude 專用)
 
-A Model Context Protocol (MCP) server that provides Taiwan weather forecasts and alerts data from the Central Weather Administration (CWA) for integration with Claude Desktop.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue)](https://chinlung.github.io/weather-api-project/)
+[![For Claude](https://img.shields.io/badge/For-Claude-blueviolet)](https://claude.ai)
 
-## Features
+這是一個**專為 Claude AI 設計**的 Model Context Protocol (MCP) 伺服器，提供來自中央氣象署 (CWA) 的臺灣天氣預報、警特報和降雨觀測資料。透過此伺服器，**Claude Desktop** 可以直接存取即時天氣資訊，為用戶提供更智能的天氣相關服務。
 
-- Query Taiwan weather forecasts by location
-- Get active weather warnings across Taiwan
-- Access rainfall data from weather stations
-- View current weather observations by location
+## 功能特色
 
-## Prerequisites
+- 依地點查詢臺灣天氣預報
+- 獲取全臺灣活躍的天氣警特報
+- 存取各氣象站的降雨資料
+- 依地點查看即時天氣觀測資料
+- 支援繁體中文地名（例如「臺北市」和「台北市」）
+
+## 系統需求
 
 - Python 3.8+
-- [uv](https://github.com/astral-sh/uv) package manager
-- [CWA API key](https://opendata.cwa.gov.tw/user/authkey)
+- [uv](https://github.com/astral-sh/uv) 套件管理器
+- [中央氣象署 API 金鑰](https://opendata.cwa.gov.tw/user/authkey)
 
-## Installation
+## 安裝方式
 
-1. Clone or download this repository
-2. Install dependencies using uv:
+1. 複製或下載此儲存庫
+2. 使用 uv 安裝相依套件：
 
 ```bash
 cd weather
 uv pip install -r requirements.txt
 ```
 
-3. Configure your CWA API key in the `.env` file:
+3. 在 `.env` 檔案中設定您的中央氣象署 API 金鑰：
 
 ```
 CWA_API_KEY=your_api_key_here
 ```
 
-## Running the Server
+## 啟動伺服器
 
-The server can be started with uv:
+可以使用 uv 啟動伺服器：
 
 ```bash
-uv --directory /Users/scl/PycharmProjects/pythonProject/weather run server.py
+uv --directory /path/to/your/weather/project run server.py
 ```
 
-## Configuring Claude Desktop
+## 設定 Claude Desktop
 
-Claude Desktop can be configured to use this MCP server by adding the following to your Claude Desktop configuration (`config.json`):
+您可以在 Claude Desktop 的設定檔 (`config.json`) 中加入以下內容，以使用此 MCP 伺服器：
 
 ```json
 "mcpServers": {
   "taiwan-weather": {
-    "command": "/Users/scl/.local/bin/uv",
+    "command": "/path/to/your/uv",
     "args": [
       "--directory",
-      "/Users/scl/PycharmProjects/pythonProject/weather",
+      "/path/to/your/weather/project",
       "run",
       "server.py"
     ]
@@ -57,48 +62,84 @@ Claude Desktop can be configured to use this MCP server by adding the following 
 }
 ```
 
-This configuration will:
-1. Use your local `uv` installation to run the server
-2. Set the working directory to your project folder
-3. Start the MCP server using `server.py`
+此設定將：
+1. 使用您本機安裝的 `uv` 來執行伺服器
+2. 將工作目錄設定為您的專案資料夾
+3. 使用 `server.py` 啟動 MCP 伺服器
 
-## Example Queries
+## 範例查詢
 
-Once configured, you can ask Claude Desktop questions like:
+設定完成後，您可以向 Claude Desktop 提出以下類型的問題：
 
-- "台北市今天的天氣預報是什麼?"
-- "目前台灣有哪些天氣警報?"
+- "臺北市今天的天氣預報是什麼?"
+- "目前臺灣有哪些天氣警報?"
 - "高雄市的降雨量是多少?"
-- "台中市的目前氣象觀測數據"
+- "臺中市的目前氣象觀測數據"
+- "臺南市有什麼天氣警特報？它的有效時間是什麼？"
 
-## How it Works
+## 運作原理
 
-This server implements the [Model Context Protocol](https://modelcontextprotocol.io/), which allows Claude Desktop to query external APIs through a standardized interface. When you ask Claude about Taiwan weather, it will:
+此伺服器實現了 [Model Context Protocol](https://modelcontextprotocol.io/)，讓 Claude Desktop 能夠通過標準化介面查詢外部 API。當您向 Claude 詢問臺灣天氣時，它會：
 
-1. Recognize the need for external weather data
-2. Send a structured request to the MCP server
-3. Receive the weather data
-4. Present it back to you in a human-readable format
+1. 識別需要外部天氣資料
+2. 向 MCP 伺服器發送結構化請求
+3. 接收天氣資料
+4. 以人類可讀的格式呈現給您
 
-## Data Source
+## 資料來源
 
-All weather data is from the [Central Weather Administration Open Data Platform](https://opendata.cwa.gov.tw/dist/opendata-swagger.html).
+所有天氣資料均來自[中央氣象署開放資料平臺](https://opendata.cwa.gov.tw/dist/opendata-swagger.html)。
 
-## Parameters
+## 參數說明
 
-The MCP server accepts the following parameters:
+MCP 伺服器接受以下參數：
 
-- `query_type` (required): One of "forecast", "warnings", "rainfall", or "observation"
-- `location` (optional): A location name in Taiwan, such as "Taipei" or "Kaohsiung"
-- `element` (optional): A specific weather element to filter by
+- `query_type` (必填)：可為 "forecast"（預報）、"warnings"（警特報）、"rainfall"（降雨量）或 "observation"（觀測資料）
+- `location` (選填)：臺灣的地點名稱，例如「臺北市」或「高雄市」（支援繁體「臺」和簡體「台」）
+- `element` (選填)：用於過濾的特定天氣元素
 
-## Troubleshooting
+## 故障排除
 
-If you encounter issues:
+如果遇到問題：
 
-1. Make sure your CWA API key is correctly set in the `.env` file
-2. Verify that the working directory path in Claude Desktop's configuration matches your actual project location
+1. 確保您的中央氣象署 API 金鑰正確設定在 `.env` 檔案中
+2. 確認 Claude Desktop 設定中的工作目錄路徑與您的實際專案位置相符
+3. 檢查 `logs` 目錄下的相關日誌檔案以獲取詳細的錯誤資訊：
+   - 若是天氣預報問題，查看 `logs/forecast.log`
+   - 若是警特報問題，查看 `logs/warnings.log`
+   - 若是觀測資料問題，查看 `logs/observation.log`
+   - 若是 API 連線問題，查看 `logs/weather_api.log` 和 `logs/api_requests.log`
 
-## License
+## 最近更新
 
-MIT
+- **2025-03-09**: 修復降雨觀測資料功能，正確處理空地點名稱和限制回傳資料量以提高效能
+- **2025-03-05**: 改進了警特報資料處理，確保 `validTime` 欄位（包含 `startTime` 和 `endTime`）正確傳遞給前端
+- **2025-03-01**: 優化了地點名稱匹配邏輯，支援「臺」和「台」的互換使用
+- **2025-02-25**: 增強了錯誤處理和日誌記錄功能
+- **2025-02-20**: 改進了不同 API 回應格式的相容性處理
+- **2025-02-15**: 實作了集中式日誌系統，將不同功能的日誌分類存放
+
+## 日誌系統
+
+系統採用集中式日誌配置，所有日誌檔案存放於 `logs` 目錄下：
+
+- `server.log`：伺服器一般操作日誌
+- `forecast.log`：天氣預報相關操作日誌
+- `warnings.log`：天氣警特報相關操作日誌
+- `observation.log`：天氣觀測資料（含降雨量）相關操作日誌
+- `weather_api.log`：天氣 API 客戶端操作日誌
+- `api_requests.log`：API 請求與回應詳細日誌
+
+每個功能模組使用專屬的日誌記錄器，確保日誌分類清晰：
+
+- 天氣預報功能使用 `forecast_logger`
+- 天氣警特報功能使用 `warnings_logger`
+- 天氣觀測功能使用 `observations_logger`
+- 伺服器一般操作使用 `server_logger`
+- API 客戶端使用 `weather_api_logger` 和 `api_requests_logger`
+
+此設計便於問題排查與系統監控，可快速定位特定功能的運作狀況。
+
+## 授權條款
+
+本專案採用 [MIT 授權條款](LICENSE)。

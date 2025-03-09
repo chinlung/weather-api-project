@@ -8,6 +8,32 @@ __pycache__/
 
 # 忽略日誌檔案
 *.log
+# 忽略整個 logs 目錄
+logs/
+
+# 忽略測試目錄及其內容
+tests/
 
 # 忽略圖片檔案（如果不需要版本控制）
 *.png
+
+# 忽略備份檔案
+*.bak
+
+# 忽略測試用的 JSON 檔案
+*.json
+
+# 忽略 IDE 相關檔案
+.idea/
+.vscode/
+
+# 忽略虛擬環境
+.venv/
+venv/
+env/
+init/
+
+# 忽略其他自動生成的檔案
+.DS_Store
+*.swp
+*.swo
