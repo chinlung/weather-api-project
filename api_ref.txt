@@ -1,0 +1,225 @@
+func get_weather_forecast
+代號： F-C0032-001
+名稱：一般天氣預報-今明 36 小時天氣預報
+參數：
+## Authorization
+- **Description**: 氣象開放資料平台公開授權碼
+- **Type**: string (query)
+- **Required**: 是
+- **Parameter**: Authorization
+  - 輸入欄位：(用戶需填入授權碼)
+
+## limit
+- **Description**: 限制最多回傳的資料，預設為回傳全部筆數
+- **Type**: number (sint) (query)
+- **Parameter**: limit
+  - 輸入欄位：(用戶需填入數字)
+
+## offset
+- **Description**: 指定從第幾筆資料開始回傳，預設為第 0 筆開始回傳
+- **Type**: number (sint) (query)
+- **Parameter**: offset
+  - 輸入欄位：(用戶需填入數字)
+
+## format
+- **Description**: 回傳資料格式，預設為 json 格式
+- **Type**: string (query)
+- **Available Values**: JSON, XML
+- **Parameter**: format
+  - 輸入欄位：(下拉選單，預設為 JSON)
+
+## locationName
+- **Description**: 鄉鎮市區名稱，支援多筆查詢，逗號分隔，如：臺北市，新北市，桃園市，臺中市，臺南市，高雄市，基隆市，嘉義市，屏東市，宜蘭縣，花蓮縣，臺東縣，澎湖縣，南投縣，彰化縣，雲林縣，嘉義縣，苗栗縣，昌化縣，新竹縣，屏東縣，宜蘭縣，臺東縣，花蓮縣，澎湖縣，南投縣，彰化縣，雲林縣，嘉義縣，苗栗縣，新竹縣，基隆市，嘉義市，屏東市，宜蘭市，臺東市，花蓮市，澎湖市，南投市，彰化市，雲林市，嘉義市，苗栗市，新竹市
+- **Type**: array[string] (query)
+- **Parameter**: locationName
+  - 輸入欄位：(多選輸入框)
+
+## elementName
+- **Description**: 天氣因子，預設為全部回傳
+- **Type**: array[string] (query)
+- **Available Values**: Wx, PoP, CI, MinT, MaxT
+- **Parameter**: elementName
+  - 輸入欄位：(多選輸入框，選項包括 Wx, PoP, CI, MinT, MaxT)
+
+## sort
+- **Description**: 回傳時間 [startTime] ~ [endTime]，做升冪排序，預設不排序
+- **Type**: string (query)
+- **Available Values**: time
+- **Parameter**: sort
+  - 輸入欄位：(下拉選單，預設為 time)
+
+----
+func get_weather_forecast
+代號： F-D0047-091
+名稱：一般天氣預報-未來 7 天天氣預報
+參數：
+## Authorization
+- **Description**: 氣象開放資料平台公開授權碼
+- **Type**: string (query)
+- **Required**: 是
+- **Parameter**: Authorization
+  - 輸入欄位：(用戶需填入授權碼)
+
+## limit
+- **Description**: 限制最多回傳的資料，預設為回傳全部筆數
+- **Type**: number (sint) (query)
+- **Parameter**: limit
+  - 輸入欄位：(用戶需填入數字)
+
+## offset
+- **Description**: 指定從第幾筆資料開始回傳，預設為第 0 筆開始回傳
+- **Type**: number (sint) (query)
+- **Parameter**: offset
+  - 輸入欄位：(用戶需填入數字)
+
+## format
+- **Description**: 回傳資料格式，預設為 json 格式
+- **Type**: string (query)
+- **Available Values**: JSON, XML
+- **Parameter**: format
+  - 輸入欄位：(下拉選單，預設為 JSON)
+
+## locationName
+- **Description**: 鄉鎮市區名稱，支援多筆查詢，逗號分隔，如：臺北市，新北市，桃園市，臺中市，臺南市，高雄市，基隆市，嘉義市，屏東市，宜蘭縣，花蓮縣，臺東縣，澎湖縣，南投縣，彰化縣，雲林縣，嘉義縣，苗栗縣，昌化縣，新竹縣，屏東縣，宜蘭縣，臺東縣，花蓮縣，澎湖縣，南投縣，彰化縣，雲林縣，嘉義縣，苗栗縣，新竹縣，基隆市，嘉義市，屏東市，宜蘭市，臺東市，花蓮市，澎湖市，南投市，彰化市，雲林市，嘉義市，苗栗市，新竹市
+- **Type**: array[string] (query)
+- **Parameter**: locationName
+  - 輸入欄位：(多選輸入框)
+
+## elementName
+- **Description**: 天氣因子，預設為全部回傳
+- **Type**: array[string] (query)
+- **Available Values**: Wx, PoP, CI, MinT, MaxT
+- **Parameter**: element之Name
+  - 輸入欄位：(多選輸入框，選項包括 Wx, PoP, CI, MinT, MaxT)
+
+## sort
+- **Description**: 回傳時間 [startTime] ~ [endTime]，做升冪排序，預設不排序
+- **Type**: string (query)
+- **Available Values**: time
+- **Parameter**: sort
+  - 輸入欄位：(下拉選單，預設為 time)
+
+## startTime
+- **Description**: 起始時間
+- **Type**: string (date-time) (query)
+- **Available Values**: yyyy-MM-ddThh:mm:ss
+- **Parameter**: startTime
+  - 輸入欄位：(日期時間格式，如 yyyy-MM-ddThh:mm:ss)
+
+## timeFrom
+- **Description**: 相對起始時間，基於 startTime 的時間範圍，預設為 0 秒
+- **Type**: string (date-time) (query)
+- **Available Values**: 基於 startTime，例如 [timeFrom] + [timeTo] 的範圍定義時間範圍
+- **Parameter**: timeFrom
+  - 輸入欄位：(日期時間格式，如 yyyy-MM-ddThh:mm:ss)
+
+## timeTo
+- **Description**: 相對終止時間，基於 timeFrom 時間範圍，時間範圍為 [timeFrom] + [timeTo]
+- **Type**: string (date-time) (query)
+- **Available Values**: yyyy-MM-ddThh:mm:ss
+- **Parameter**: timeTo
+  - 輸入欄位：(日期時間格式，如 yyyy-MM-ddThh:mm:ss)
+
+---
+
+func get_weather_observation
+代號： O-A0003-001
+名稱：現在天氣觀測報告-現在天氣觀測報告
+參數：
+## Authorization
+- **Description**: 氣象開放資料平台公開授權碼
+- **Type**: string (query)
+- **Required**: 是
+- **Parameter**: Authorization
+  - 輸入欄位：(用戶需填入授權碼)
+
+## limit
+- **Description**: 限制最多回傳的資料，預設為回傳全部筆數
+- **Type**: number (sint) (query)
+- **Parameter**: limit
+  - 輸入欄位：(用戶需填入數字)
+
+## offset
+- **Description**: 指定從第幾筆資料開始回傳，預設為第 0 筆開始回傳
+- **Type**: number (sint) (query)
+- **Parameter**: offset
+  - 輸入欄位：(用戶需填入數字)
+
+## format
+- **Description**: 回傳資料格式，預設為 json 格式
+- **Type**: string (query)
+- **Available Values**: JSON, XML
+- **Parameter**: format
+  - 輸入欄位：(下拉選單，預設為 JSON)
+
+## StationId
+- **Description**: 測站編號，資料來源：https://e-service.cwa.gov.tw/wdps/obs/state.htm
+- **Type**: array[string] (query)
+- **Parameter**: StationId
+  - 輸入欄位：(多選輸入框)
+
+## StationName
+- **Description**: 測站名稱，資料來源：https://e-service.cwa.gov.tw/wdps/obs/state.htm
+- **Type**: array[string] (query)
+- **Parameter**: StationName
+  - 輸入欄位：(多選輸入框)
+
+## WeatherElement
+- **Description**: 氣象因子，預設為全部回傳
+- **Type**: array[string] (query)
+- **Available Values**: Weather, VisibilityDescription, SunshineDuration, Now, WindDirection, WindSpeed, AirTemperature, RelativeHumidity, AirPressure, UVIndex, Max10MinAverage, GustInfo, DailyHigh, DailyLow
+- **Parameter**: WeatherElement
+  - 輸入欄位：(多選輸入框，選項包括 Weather, VisibilityDescription, SunshineDuration, Now, WindDirection, WindSpeed, AirTemperature, RelativeHumidity, AirPressure, UVIndex, Max10MinAverage, GustInfo, DailyHigh, DailyLow)
+
+## GeoInfo
+- **Description**: 地理資訊，預設為全部回傳
+- **Type**: array[string] (query)
+- **Available Values**: Coordinates, StationAltitude, CountyName, TownName, CountyCode, TownCode
+- **Parameter**: GeoInfo
+  - 輸入欄位：(多選輸入框，選項包括 Coordinates, StationAltitude, CountyName, TownName, CountyCode, TownCode)
+
+---
+
+func get_weather_warning
+代號： W-C0033-001
+名稱：天氣警特報
+參數：
+## Authorization
+- **Description**: 氣象開放資料平台公開授權碼
+- **Type**: string (query)
+- **Required**: 是
+- **Parameter**: Authorization
+  - 輸入欄位：(用戶需填入授權碼)
+
+## limit
+- **Description**: 限制最多回傳的資料，預設為回傳全部筆數
+- **Type**: number (sint) (query)
+- **Parameter**: limit
+  - 輸入欄位：(用戶需填入數字)
+
+## offset
+- **Description**: 指定從第幾筆資料開始回傳，預設為第 0 筆開始回傳
+- **Type**: number (sint) (query)
+- **Parameter**: offset
+  - 輸入欄位：(用戶需填入數字)
+
+## format
+- **Description**: 回傳資料格式，預設為 json 格式
+- **Type**: string (query)
+- **Available Values**: JSON, XML
+- **Parameter**: format
+  - 輸入欄位：(下拉選單，預設為 JSON)
+
+## locationName
+- **Description**: 縣市名稱，預設為所有縣市
+- **Type**: array[string] (query)
+- **Available Values**: 宜蘭縣，花蓮縣，臺東縣，澎湖縣，金門縣，連江縣，基隆市，新北市，桃園市，臺中市，臺南市，高雄市，屏東市，宜蘭市，臺東市，花蓮市，澎湖市，南投市，彰化市，雲林市，嘉義市，苗栗市，新竹市，基隆市，嘉義市，屏東市，宜蘭市，臺東市，花蓮市，澎湖市，南投市，彰化市，雲林市，嘉義市，苗栗市，新竹市，宜蘭縣，屏東縣，臺東縣，花蓮縣，澎湖縣，南投縣，彰化縣，雲林縣，嘉義縣，苗栗縣，新竹縣，基隆市，嘉義市，屏東市，宜蘭市，臺東市，花蓮市，澎湖市，南投市，彰化市，雲林市，嘉義市，苗栗市，新竹市，宜蘭縣，屏東縣，臺東縣，花蓮縣，澎湖縣，南投縣，彰化縣，雲林縣，嘉義縣，苗栗縣，新竹縣，基隆市，嘉義市，屏東市，宜蘭市，臺東市，花蓮市，澎湖市，南投市，彰化市，雲林市，嘉義市，苗栗市，新竹市，宜蘭縣，屏東縣，臺東縣，花蓮縣，澎湖縣，南投縣，彰化縣，雲林縣，嘉義縣，苗栗縣，新竹縣
+- **Parameter**: locationName
+  - 輸入欄位：(多選輸入框)
+
+## phenomena
+- **Description**: 當時現象之警特報類型
+- **Type**: array[string] (query)
+- **Available Values**: 濃霧，大雨，豪雨，大豪雨，超大豪雨，陸上強風，海上海上颱風
+- **Parameter**: phenomena
+  - 輸入欄位：(多選輸入框，選項包括 濃霧，大雨，豪雨，大豪雨，超大豪雨，陸上強風，海上海上颱風)
